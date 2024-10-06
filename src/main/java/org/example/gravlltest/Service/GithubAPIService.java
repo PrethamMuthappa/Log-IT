@@ -53,5 +53,47 @@ public class GithubAPIService {
     }
 
     private CommitResponse fetchcommitDetails(String sha) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", "application/vnd.github.v3+json");
+
+        String detailUrl = String.format("%s/repos/%s/%s/commits/%s", baseurl, owner, repo, sha);
+
+        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                detailUrl,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                new ParameterizedTypeReference<Map<String, Object>>() {}
+        );
+
+        if (response.getBody() != null) {
+            return parseCommitResponse(response.getBody());
+        }
+        return null;
+    }
+
+    private CommitResponse parseCommitResponse(Map<String, Object> responseBody) {
+        CommitResponse response = new CommitResponse();
+        response.setSha((String) responseBody.get("sha"));
+
+        Map<String, Object> commit = (Map<String, Object>) responseBody.get("commit");
+        Map<String, Object> author = (Map<String, Object>) commit.get("author");
+        response.setAuthor((String) author.get("name"));
+        response.setDate((String) author.get("date"));
+        response.setMessage((String) commit.get("message"));
+
+        List<CommitResponse.FileChange> changes = new ArrayList<>();
+        List<Map<String, Object>> files = (List<Map<String, Object>>) responseBody.get("files");
+        if (files != null) {
+            for (Map<String, Object> file : files) {
+                CommitResponse.FileChange change = new CommitResponse.FileChange();
+                change.setFilename((String) file.get("filename"));
+                change.setPatch((String) file.get("patch"));
+                changes.add(change);
+            }
+        }
+        response.setChanges(changes);
+
+        return response;
+
     }
 }

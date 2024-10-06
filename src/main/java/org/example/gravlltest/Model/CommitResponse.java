@@ -5,11 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
-class FileChange{
-private String filename;
-private String patch;
-}
+
 
 @Getter
 @Setter
@@ -25,4 +21,9 @@ public class CommitResponse {
     private String message;
     private List<FileChange> changes;
 
+    @Data
+   public static class FileChange{
+        private String filename;
+        private String patch;
+    }
 }
