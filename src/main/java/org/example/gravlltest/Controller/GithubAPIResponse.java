@@ -15,6 +15,6 @@ public class GithubAPIResponse {
     }
 
     public ResponseEntity<?>responseEntity(){
-        return new ResponseEntity<>(githubAPIService.ExtractAPI(), HttpStatus.OK);
+        return new ResponseEntity<>(githubAPIService.FetchCommits(), HttpStatus.OK);
     }
 }
