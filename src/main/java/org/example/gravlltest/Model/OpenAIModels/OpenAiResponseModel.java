@@ -1,8 +1,9 @@
-package org.example.gravlltest.Model;
+package org.example.gravlltest.Model.OpenAIModels;
 
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,9 +19,11 @@ public class OpenAiResponseModel {
     private int n;
     private double temperature;
 
-    public static class Message{
-        private String role;
-        private String content;
+    public OpenAiResponseModel(String model, String prompt) {
+        this.model = model;
+
+        this.messages = new ArrayList<>();
+        this.messages.add(new Message("user", prompt));
     }
 
 }

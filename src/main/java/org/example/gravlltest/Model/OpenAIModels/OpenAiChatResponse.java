@@ -1,7 +1,8 @@
-package org.example.gravlltest.Model;
+package org.example.gravlltest.Model.OpenAIModels;
 
 import lombok.*;
 
+import java.net.ContentHandler;
 import java.util.List;
 
 @Getter
@@ -14,9 +15,4 @@ public class OpenAiChatResponse {
 
     private List<Choice>choices;
 
-    public static class Choice{
-
-        private int index;
-        private OpenAiResponseModel.Message message;
-    }
 }

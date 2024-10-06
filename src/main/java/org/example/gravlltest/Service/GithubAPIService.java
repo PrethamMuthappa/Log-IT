@@ -1,5 +1,6 @@
 package org.example.gravlltest.Service;
 
+import org.example.gravlltest.Controller.OpenAIController;
 import org.example.gravlltest.Model.CommitResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -21,9 +22,11 @@ public class GithubAPIService {
     private final String baseurl="https://api.github.com";
     private String owner="PrethamMuthappa";
     private String repo="SandSim";
+    private final OpenAIController openAIController;
 
-    public GithubAPIService(RestTemplate restTemplate) {
+    public GithubAPIService(RestTemplate restTemplate, OpenAIController openAIController) {
         this.restTemplate = restTemplate;
+        this.openAIController = openAIController;
     }
 
     public List<CommitResponse> FetchCommits() {
@@ -92,7 +95,6 @@ public class GithubAPIService {
             }
         }
         response.setChanges(changes);
-
         return response;
 
     }
