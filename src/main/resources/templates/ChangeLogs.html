@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Commit ChangeLogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2">Commit ChangeLogs</h1>
+    <h2 class="text-xl mb-6">
+        <span th:text="${repoOwner}"></span> /
+        <span th:text="${repoName}"></span>
+    </h2>
+
+    <div th:each="commit : ${commits}" class="bg-white rounded-lg shadow-md p-6 mb-4">
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold" th:text="${commit.message}"></h2>
+            <p class="text-gray-600">
+                <span th:text="${commit.author}"></span> -
+                <span th:text="${commit.date}"></span>
+            </p>
+            <p class="text-gray-500" th:text="${'SHA: ' + commit.sha}"></p>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(commit.changes)}" class="mt-4">
+            <h3 class="text-lg font-semibold mb-2">File Changes</h3>
+            <div th:each="change : ${commit.changes}" class="mb-2">
+                <p class="font-medium" th:text="${change.filename}"></p>
+                <pre class="bg-gray-100 p-2 rounded mt-1 overflow-x-auto"><code th:text="${change.patch}"></code></pre>
+            </div>
+        </div>
+
+        <!-- Add this section to display the AI analysis -->
+        <div th:if="${commit.aisummary}" class="mt-4 p-4 bg-blue-50 rounded">
+            <h3 class="text-lg font-semibold mb-2">AI Analysis</h3>
+            <p th:text="${commit.aisummary}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

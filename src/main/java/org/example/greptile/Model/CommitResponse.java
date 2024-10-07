@@ -1,4 +1,4 @@
-package org.example.gravlltest.Model;
+package org.example.greptile.Model;
 
 
 import lombok.*;
@@ -20,6 +20,7 @@ public class CommitResponse {
     private String date;
     private String message;
     private List<FileChange> changes;
+    private String aisummary;
 
     @Data
    public static class FileChange{

@@ -1,4 +1,4 @@
-package org.example.gravlltest.RestTemplate;
+package org.example.greptile.RestTemplate;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

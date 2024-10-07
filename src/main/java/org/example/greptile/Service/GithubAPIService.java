@@ -1,11 +1,12 @@
-package org.example.gravlltest.Service;
+package org.example.greptile.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.gravlltest.Controller.OpenAIController;
-import org.example.gravlltest.Model.CommitResponse;
-import org.example.gravlltest.Model.OpenAIModels.ChatRequest;
-import org.example.gravlltest.Model.OpenAIModels.Content;
-import org.example.gravlltest.Model.OpenAIModels.Message;
+import org.example.greptile.Controller.OpenAIController;
+import org.example.greptile.Model.CommitResponse;
+import org.example.greptile.Model.OpenAIModels.ChatRequest;
+import org.example.greptile.Model.OpenAIModels.Chatresponse;
+import org.example.greptile.Model.OpenAIModels.Content;
+import org.example.greptile.Model.OpenAIModels.Message;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,8 +27,8 @@ public class GithubAPIService {
 
     private final RestTemplate restTemplate;
     private final String baseurl="https://api.github.com";
-    private String owner="PrethamMuthappa";
-    private String repo="user-activity";
+ //   private String owner="PrethamMuthappa";
+   // private String repo="user-activity";
     private final OpenAIController openAIController;
 
     public GithubAPIService(RestTemplate restTemplate, OpenAIController openAIController) {
@@ -35,11 +36,11 @@ public class GithubAPIService {
         this.openAIController = openAIController;
     }
 
-    public List<CommitResponse> FetchCommits() {
+    public List<CommitResponse> FetchCommits(String owner, String repo, int n) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept","application/vnd.github.v3+json");
-        String commitsUrl = String.format("%s/repos/%s/%s/commits?per_page=1", baseurl, owner, repo);
+        String commitsUrl = String.format("%s/repos/%s/%s/commits?per_page=%d", baseurl, owner, repo,n);
         ResponseEntity<List<Map<String,Object>>> responseEntity = restTemplate.exchange(
                 commitsUrl,
                 HttpMethod.GET,
@@ -52,7 +53,7 @@ public class GithubAPIService {
         if(responseEntity.getBody()!=null){
             for(Map<String,Object> commit: responseEntity.getBody()){
                 String sha= (String) commit.get("sha");
-                CommitResponse responsedetails=fetchcommitDetails(sha);
+                CommitResponse responsedetails=fetchcommitDetails(sha,owner,repo);
                 if(responsedetails!=null){
                     commitResponses.add(responsedetails);
                 }
@@ -61,7 +62,7 @@ public class GithubAPIService {
      return commitResponses;
     }
 
-    private CommitResponse fetchcommitDetails(String sha) {
+    private CommitResponse fetchcommitDetails(String sha,String owner, String repo) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", "application/vnd.github.v3+json");
 
@@ -105,7 +106,8 @@ public class GithubAPIService {
             }
         }
 
-        chatrequest.setModel("meta-llama/Llama-Vision-Free");
+        //this is to set llm changes
+        chatrequest.setModel("meta-llama/Llama-Guard-3-11B-Vision-Turbo");
         chatrequest.setMax_tokens(512);
         chatrequest.setStream(false);
         chatrequest.setTemperature(0.7);
@@ -128,9 +130,10 @@ public class GithubAPIService {
         messages.add(message);
         chatrequest.setMessages(messages);
 
-
         response.setChanges(changes);
 
+        Chatresponse ai=openAIController.generateChat(chatrequest);
+        response.setAisummary(ai.getChoices().getFirst().getMessage().getContent());
 //        openAIController.generateChat(chatrequest);
         log.info(openAIController.generateChat(chatrequest).toString());
         return response;

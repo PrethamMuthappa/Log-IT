@@ -1,9 +1,8 @@
-package org.example.gravlltest.Model.OpenAIModels;
+package org.example.greptile.Model.OpenAIModels;
 
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter

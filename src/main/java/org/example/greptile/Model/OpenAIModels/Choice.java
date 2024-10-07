@@ -1,4 +1,4 @@
-package org.example.gravlltest.Model.OpenAIModels;
+package org.example.greptile.Model.OpenAIModels;
 
 import lombok.*;
 

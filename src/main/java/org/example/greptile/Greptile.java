@@ -1,4 +1,4 @@
-package org.example.gravlltest;
+package org.example.greptile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
