@@ -12,18 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Data
-public class OpenAiResponseModel {
+public class ChatRequest {
 
     private String model;
     private List<Message> messages;
-    private int n;
+    private int max_tokens;
     private double temperature;
-
-    public OpenAiResponseModel(String model, String prompt) {
-        this.model = model;
-
-        this.messages = new ArrayList<>();
-        this.messages.add(new Message("user", prompt));
-    }
+    private double top_p;
+    private int top_k;
+    private double repetition_penalty;
+    private List<String> stop;
+    private int truncate;
+    private boolean stream;
 
 }
