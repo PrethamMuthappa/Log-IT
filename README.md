@@ -14,7 +14,8 @@ Languages and framework used
 
 Workflow diagram
 
-![img.png](img.png)
+![Screenshot from 2024-10-07 10-34-22](https://github.com/user-attachments/assets/03b64f33-73bc-4bbc-a0e7-44729839b533)
+
 
 ## Steps how this works
 - Pulls the commit history from github api
@@ -32,7 +33,8 @@ Workflow diagram
 
 ## Example
 
-![image](https://github.com/user-attachments/assets/411070f9-485f-4ffd-aee5-979913c17058)
+![image](https://github.com/user-attachments/assets/65bb4b9b-8f9f-4ef7-94e4-4fcea58155c6)
+
 
 Result change logs
 
