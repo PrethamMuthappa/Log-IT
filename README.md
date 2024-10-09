@@ -1,9 +1,9 @@
-# Greptile assesment
+# Log-It
 
+AI Automated Changelog generator built for developers
 
 ### To create a change log generator
 
----
 
 Languages and framework used
 
@@ -11,9 +11,6 @@ Languages and framework used
 - Meta Llama Vision Free
 - thymeleaf with html
 
-Reason for going with this is because I was already learning about spring so making projects with that would improve my spring knowledege
-
-I can also build it using js and rust too.
 
 Workflow diagram
 
