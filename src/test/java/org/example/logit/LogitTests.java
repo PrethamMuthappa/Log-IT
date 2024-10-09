@@ -1,10 +1,10 @@
-package org.example.greptile;
+package org.example.logit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GreptileTests {
+class LogitTests {
 
     @Test
     void contextLoads() {

@@ -1,4 +1,4 @@
-package org.example.greptile.Model.OpenAIModels;
+package org.example.logit.Model.OpenAIModels;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

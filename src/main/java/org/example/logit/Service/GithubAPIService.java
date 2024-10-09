@@ -1,12 +1,12 @@
-package org.example.greptile.Service;
+package org.example.logit.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.greptile.Controller.OpenAIController;
-import org.example.greptile.Model.CommitResponse;
-import org.example.greptile.Model.OpenAIModels.ChatRequest;
-import org.example.greptile.Model.OpenAIModels.Chatresponse;
-import org.example.greptile.Model.OpenAIModels.Content;
-import org.example.greptile.Model.OpenAIModels.Message;
+import org.example.logit.Controller.OpenAIController;
+import org.example.logit.Model.CommitResponse;
+import org.example.logit.Model.OpenAIModels.ChatRequest;
+import org.example.logit.Model.OpenAIModels.Chatresponse;
+import org.example.logit.Model.OpenAIModels.Content;
+import org.example.logit.Model.OpenAIModels.Message;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

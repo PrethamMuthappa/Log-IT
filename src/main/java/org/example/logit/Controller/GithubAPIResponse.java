@@ -1,7 +1,7 @@
-package org.example.greptile.Controller;
+package org.example.logit.Controller;
 
-import org.example.greptile.Model.CommitResponse;
-import org.example.greptile.Service.GithubAPIService;
+import org.example.logit.Model.CommitResponse;
+import org.example.logit.Service.GithubAPIService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

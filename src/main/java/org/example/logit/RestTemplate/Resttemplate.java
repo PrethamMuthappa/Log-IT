@@ -1,4 +1,4 @@
-package org.example.greptile.RestTemplate;
+package org.example.logit.RestTemplate;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

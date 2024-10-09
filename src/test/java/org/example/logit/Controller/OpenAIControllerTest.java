@@ -1,4 +1,4 @@
-package org.example.greptile.Controller;
+package org.example.logit.Controller;
 
 import org.junit.jupiter.api.Test;
 

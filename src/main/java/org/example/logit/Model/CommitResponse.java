@@ -1,4 +1,4 @@
-package org.example.greptile.Model;
+package org.example.logit.Model;
 
 
 import lombok.*;

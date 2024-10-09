@@ -1,7 +1,8 @@
-package org.example.greptile.Controller;
+package org.example.logit.Controller;
 
-import org.example.greptile.Model.OpenAIModels.Chatresponse;
-import org.example.greptile.Model.OpenAIModels.ChatRequest;
+import org.example.logit.Model.OpenAIModels.Chatresponse;
+import org.example.logit.Model.OpenAIModels.ChatRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,8 +15,8 @@ public class OpenAIController {
 
     private final RestTemplate restTemplate;
 
-    //temp key will be destroyed later
-   private String key="08a1ab7aaff2c92e0aae9bf7ee6a599a17f3ae62f749202646b68732ab0a5ec0";
+   @Value("${mykeys.apikey}")
+   private String key;
     private String apiUrl="https://api.together.xyz/v1/chat/completions";
 
     public OpenAIController(RestTemplate restTemplate) {
